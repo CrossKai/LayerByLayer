@@ -1,59 +1,47 @@
 package com.example.layerbylayer.client;
 
-import java.util.HashMap;
-import java.util.Map;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.world.World;
 
 public class ImpulseVisualizer {
-    private static final int[] MILESTONE_IMPULSES = {3, 5, 9, 10};
-    private Map<Integer, String> soundEffects;
-    private int currentImpulse;
 
-    public ImpulseVisualizer() {
-        soundEffects = new HashMap<>();
-        initializeSoundEffects();
-        currentImpulse = 0;
+    private World world;
+    private MinecraftClient client;
+
+    public ImpulseVisualizer(World world) {
+        this.world = world;
+        this.client = MinecraftClient.getInstance();
     }
 
-    private void initializeSoundEffects() {
-        soundEffects.put(3, "sound_effect_milestone3.wav");
-        soundEffects.put(5, "sound_effect_milestone5.wav");
-        soundEffects.put(9, "sound_effect_milestone9.wav");
-        soundEffects.put(10, "sound_effect_milestone10.wav");
+    public void visualizeImpulseEffect(double x, double y, double z) {
+        flashEffect(x, y, z);
+        spawnParticles(x, y, z);
+        playSoundFeedback(x, y, z);
+        handleMilestoneTriggers();
     }
 
-    public void receiveImpulse(int impulse) {
-        currentImpulse = impulse;
-        manageVisualEffects();
-        playSoundFeedback();
-        spawnParticles();
+    private void flashEffect(double x, double y, double z) {
+        // Logic to create flash visual effect
+        // ...
     }
 
-    private void manageVisualEffects() {
-        if (isMilestone(currentImpulse)) {
-            // Implement visual effects for milestone impulses
-            System.out.println("Visual effect triggered for impulse " + currentImpulse);
-        }
+    private void spawnParticles(double x, double y, double z) {
+        // Logic to spawn particles
+        world.addParticle(ParticleTypes.EXPLOSION, x, y, z, 0, 0, 0);
+        // ...
     }
 
-    private void playSoundFeedback() {
-        if (soundEffects.containsKey(currentImpulse)) {
-            String soundFile = soundEffects.get(currentImpulse);
-            // Logic to play the sound
-            System.out.println("Playing sound: " + soundFile);
-        }
+    private void playSoundFeedback(double x, double y, double z) {
+        // Logic to play sound feedback
+        client.world.playSound(null, x, y, z, SoundEvents.BLOCK_NOTE_BLOCK_HAT, 
+                                client.player.getSoundCategory(), 1.0F, 1.0F);
+        // ...
     }
 
-    private void spawnParticles() {
-        // Logic to spawn particles based on currentImpulse
-        System.out.println("Spawning particles for impulse " + currentImpulse);
-    }
-
-    private boolean isMilestone(int impulse) {
-        for (int milestone : MILESTONE_IMPULSES) {
-            if (impulse == milestone) {
-                return true;
-            }
-        }
-        return false;
+    private void handleMilestoneTriggers() {
+        // Logic to handle milestone triggers
+        // ...
     }
 }
