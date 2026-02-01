@@ -1,0 +1,10 @@
+{
+  "item.layerbylayer.gravity_core": "Gravity Core",
+  "item.layerbylayer.collision_core": "Collision Core",
+  "item.layerbylayer.conservation_core": "Conservation Core",
+  "item.layerbylayer.fluiddynamics_core": "Fluid Dynamics Core",
+  "item.layerbylayer.thermodynamics_core": "Thermodynamics Core",
+  "item.layerbylayer.reality_fragment": "Reality Fragment",
+
+  "itemGroup.layerbylayer": "Layer by Layer"
+}
